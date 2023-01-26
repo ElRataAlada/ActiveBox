@@ -1,522 +1,128 @@
-@import "./null";
+@import "null";
 
-$raleway: 'Raleway', sans-serif;
-$open: 'Open Sans', sans-serif;
-$cardo: 'Cardo', serif;
+$layer_backgroung: #1E252B;
 
-$grey: #6c7279;
-$black: #2d3033;
+$container_width: 1230px;
+$container_padding: 30px;
+
+$layer_backgroung: #1E252B;
+$white_gray: rgba(255, 255, 255, .55);
+
+$footer_height: 350px;
 
 body{
-    font-size: 14px;
-    font-family: $raleway;
-    line-height: 1.2;
-    background-color: #fff;
-    background: #fff;
-    color: $black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1;
 
     -webkit-font-smoothing: antialiased;
-}
 
-.noscroll{
-    overflow: hidden;
+    color: #fff;
+
+    &.fixed{
+        overflow: hidden;
+    }
 }
 
 .container{
+    max-width: $container_width;
+    padding: 0 $container_padding;
+
     width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
-}
 
-.return{
-    position: fixed;
-    width: 64px;
-    height: auto;
-
-    border-radius: 50%;
-    background-color: #fff;
-
-    z-index: 1000;
-
-    bottom: 20px;
-    right: -65px;
-
-    .image{
-        max-width: 64px;
-        height: auto;
+    &.animated{
+        opacity: 0;
+        transition: all 2s ease;
     }
 
-    transition: right .2s ease-in-out;
-}
-
-.show{
-    right: 20px;
-}
-
-.header{
-    position: absolute;
-    height: 145px;
-    
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 5;
-}
-
-.header__logo{
-    z-index: 100;
-}
-
-.header__inner{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-
-    padding: 60px 0;
-
-    border-bottom: 1px solid #505369;
-
-    .nav_link{
-        text-decoration: none;
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 13px;
-        font-weight: 700;
-        margin-left: 60px;
-
-        transition: color .2s linear;
-
-        &:hover{
-            color: #b1b1b1;
-        }
-    }
-
-    .nav{
-        margin: auto 0;
+    &._active{
+        opacity: 1;
     }
 }
-
-.header__logo{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.burger{
-    z-index: 10000;
-    display: block;
-    position: relative;
-    width: 40px;
-    height: 30px;
-    background: none;
-    display: none;
-    margin-right: 50px;
-    font-size: 0;
-    color: transparent;
-
-    &::before,
-    &::after{
-        content: "";
-        position: absolute;
-        display: block;
-        
-        left: 0;
-        width: 100%;
-        height: 2.5px;
-        background-color: #fff;
-        transition: all .2s ease;
-    }
-
-    &::before{
-        top: 0px;
-    }
-    
-    &::after{        
-        bottom: 0;
-    }
-
-    &.active{
-        .burger__item{
-            transform: translateX(100%) scale(0);
-        }
-        
-        &::after{
-            bottom: 50%;
-            transform: rotate(-45deg)  translate(0, 50%);
-        }
-        
-        &::before{
-            top: 50%;
-            transform: rotate(45deg) translate(0, -50%);
-        }
-
-    }
-}
-
-.popup{
-    display: none;
-}
-
-.burger__item{
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #fff;
-    transition: all .2s ease;
-}
-
-.intro{
-    color: #fff;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    padding-top: 145px;
-    max-height: 750px;
-    height: 100%;
-
-    background-color: #2b2e49;
-    background: url(../../img/header_background.png) center no-repeat;
-    background-size: cover;
-}
-
-.intro .container{
-    max-width: 915px;
-    text-align: center;
-
-    .title{
-        text-transform: uppercase;
-        font-family: $open;
-        font-weight: 700;
-        font-size: 65px;
-        margin-bottom: 40px;
-    }
-
-    .subtitle{
-        font-size: 22px;
-        line-height: 1.5;
-        margin-bottom: 80px;
-    }
-
-}
-
 
 .btn{
     display: inline-block;
-    vertical-align: top;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5em;
+    
+    border-radius: .5em;
+    padding: .75em 1.5em;
 
-    text-transform: uppercase;
-    font-family: $raleway;
-    font-weight: 600;
-    color: #fff;
-
-    text-decoration: none;
-    padding: 20px 55px;
+    user-select: none;
     cursor: pointer;
 
-    border-radius: 5px;
-    transition: background-color .2s linear;
-}
+    transition: all .2s ease;
 
-.btn--red{
-    background-color: #e84545;
+    color: #fff;
+    background-color: transparent;
 
     &:hover{
-        background-color: #bf3737;
+        color: #fff;
+        box-shadow: 0 0 0 2px #fff;
+    }
+
+    &.active{
+        color: #fff;
+        background-color: #FF6E30;
+        
+        &:hover{
+            background-color: #d9612d;
+            box-shadow: none;
+        }
+    }
+
+    &:active{
+        opacity: .8;
     }
 }
 
-.pros__inner{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
 
-    margin-top: 120px;
+.btn--reversive{
+    margin: 0 auto;
 
-    .element{
-        max-width: 300px;
-        width: 100%;
+    box-shadow: 0 0 0 2px $white_gray;
 
-        margin: 0 10px;
-        margin-bottom: 75px;
+    color: #FF6E30 !important;
+    font-size: 20px;
+    line-height: 30px;
 
-        text-align: center;
-
-        .image{
-            max-width: 64px;
-            width: 100%;
-            height: auto;
-
-            margin-bottom: 30px;
-        }
-
-        .title{
-            font-weight: 700;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
+    &:hover{
+        background-color: rgba(0, 0, 0, .2);
     }
 }
 
-.semples{
+.layer{
     width: 100%;
+    min-height: 100vh;
+    height: auto;
     position: relative;
 
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.semples__card{
-    width: 25%;
-    height: 350px;
-    position: relative;
     overflow: hidden;
 
-    border: 1px solid #fff;
+    background-color: $layer_backgroung;
 
-    .image{
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        z-index: 1;
-
-        transform: translate3d(-50%, -50%, 0);
-        
-    }
-
-    
-    .text{
-        position: absolute;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        
-        background-color: rgba(232, 69, 69, .9);
-        opacity: 0;
-        
-        z-index: 2;
-        color: #fff;
-
-        transition: opacity .2s linear;
-
-        .title{
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-    }
-
-    &:hover{
-        .text{
-            opacity: 1;
+    &.fixed{
+        padding-top: 180px;
+        .header{
+            position: fixed;
         }
     }
 }
 
-.team{
-    margin: 100px 0;
+.user{
+    user-select: none;
+    font-size: 20px;
+    color: rgb(255, 135, 22);
 }
 
-.team__inner{
-    margin: 0 -15PX;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+._active{
+    transform: translate(0, 0) !important;
 }
 
-.team__card{
-    padding: 0 15px ;
-    position: relative;
-    width: 25%;
+@import "header";
+@import "main/main";
+@import "footer";
 
-    .image{
-        display: block;
-        width: 100%;
-        height: auto;
-        margin-bottom: 30px;
-    }
-
-    .name{
-        font-size: 25px;
-        font-weight: 400;
-        margin-bottom: 15px;
-    }
-
-    .profession{
-        color: #e84545;
-        font-size: 13px;
-        font-weight: 400;
-        margin-bottom: 30px;
-    }
-
-    .text{
-        margin-bottom: 30px;
-    }
-
-    .socials_link{
-        margin-right: 12px;
-    }
-}
-
-.reviews{
-    position: relative;
-    width: 100%;
-    display: flex;
-
-    .inner{
-        background-color: #53354a;
-        color: #fff;
-
-        padding: 20px 30px 20px 85px;
-
-        max-width: 50%;
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        .review{
-            font-family: $cardo;
-            font-style: italic;
-            font-size: 36px;
-
-            margin-bottom: 40px;
-
-            &:before{
-                content: "“";
-            }
-            
-            &::after{
-                content: "”";
-            }
-        }
-
-        .sign{
-           font-weight: 700;
-           font-size: 13px;
-           text-transform: uppercase; 
-        }
-
-    }
-
-    .image{
-        display: block;
-        max-width: 50%;
-        height: auto;
-    }
-}
-
-.download{
-    margin: 100px 0;
-    .inner{
-        max-width: 1000px;
-        width: 100%;
-        padding: 0 20px;
-
-        margin: 0 auto;
-
-        text-align: center;
-
-        .title{
-            font-size: 28px;
-            font-weight: 300;
-
-            margin-bottom: 20px;
-        }
-
-        .subtitle{
-            text-transform: uppercase;
-            font-size: 13px;
-            font-weight: 700;
-
-            margin-bottom: 40px;
-        }
-    }
-}
-
-.footer{
-    max-height: 250px;
-    height: 100%;
-    width: 100%;
-    background-color: #3a3e64;
-    
-    color: #fff;
-    
-    .container{
-        max-width: 1000px;
-        padding-top: 70px;
-
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    .title__block{
-        width: 30%;
-
-        display: flex;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .location{
-        max-width: 150px;
-        text-align: center;
-        .title{
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        address{
-            text-decoration: none;
-            font-style: normal;
-            opacity: .6;
-        }
-    }
-
-    .socials{
-        max-width: 150px;
-
-        .title{
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .icos{
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-
-            background-color: #ffffff;
-            border-radius: 10px;
-
-            padding: 10px 15px;
-        }
-    }
-
-    .about{
-        max-width: 340px;
-        width: 100%;
-        text-align: center;
-
-        .title{
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .text{
-            opacity: .6;
-        }
-    }
-}
-
-@import "./media"
+@import "media";
